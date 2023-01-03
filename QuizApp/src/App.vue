@@ -1,3 +1,11 @@
+<script setup>
+import q from './data/quizes.json'
+import {ref} from 'vue'
+
+const quizes = ref(q)
+
+</script>
+
 <template>
   <div class="container">
     <header>
@@ -5,58 +13,18 @@
       <input type="text" placeholder="Search...">
     </header>
     <div class="options-container">
-      <div class="card">
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
         <img
-            src="https://imageio.forbes.com/specials-images/imageserve/62b1f965f3af80b3847a1f0b/Kids-who-seem-to-be-struggling-with-math-may-actually-be-struggling-with-language-/960x0.jpg?format=jpg&width=960"
-            alt="Math">
+            :src="quiz.img"
+            alt="">
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-            src="https://imageio.forbes.com/specials-images/imageserve/62b1f965f3af80b3847a1f0b/Kids-who-seem-to-be-struggling-with-math-may-actually-be-struggling-with-language-/960x0.jpg?format=jpg&width=960"
-            alt="Math">
-        <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-            src="https://imageio.forbes.com/specials-images/imageserve/62b1f965f3af80b3847a1f0b/Kids-who-seem-to-be-struggling-with-math-may-actually-be-struggling-with-language-/960x0.jpg?format=jpg&width=960"
-            alt="Math">
-        <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-            src="https://imageio.forbes.com/specials-images/imageserve/62b1f965f3af80b3847a1f0b/Kids-who-seem-to-be-struggling-with-math-may-actually-be-struggling-with-language-/960x0.jpg?format=jpg&width=960"
-            alt="Math">
-        <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
-        </div>
-      </div>
-      <div class="card">
-        <img
-            src="https://imageio.forbes.com/specials-images/imageserve/62b1f965f3af80b3847a1f0b/Kids-who-seem-to-be-struggling-with-math-may-actually-be-struggling-with-language-/960x0.jpg?format=jpg&width=960"
-            alt="Math">
-        <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }} questions</p>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-
-</script>
 
 <style scoped>
 .container {
@@ -83,10 +51,6 @@ header input {
 }
 
 .options-container {
-  /*display: grid;*/
-  /*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
-  /*grid-gap: 20px;*/
-
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
