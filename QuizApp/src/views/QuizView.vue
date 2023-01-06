@@ -11,7 +11,7 @@ const quizId = parseInt(route.params.id);
 
 const quiz = quizes.find((quiz) => quiz.id === quizId);
 
-const currentQuestionIndex = ref(0);
+const currentQuestionIndex = ref(0); //"questions" array index, from json file
 
 </script>
 
