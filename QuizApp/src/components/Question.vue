@@ -1,36 +1,23 @@
 <script setup>
+const question = defineProps({
+  question: Object,
+})
+
+const {text, options} = question.question
 
 </script>
 
 <template>
   <div class="question-container">
     <h2 class="question">
-      What is the capital of France?
+      {{ text }}
     </h2>
   </div>
   <div class="options-container">
-    <div class="option">
-      <p class="option-label">A</p>
+    <div v-for="option in options" :key="option.id" class="option">
+      <p class="option-label">{{ option.label }}</p>
       <div class="option-value">
-        <p>Paris</p>
-      </div>
-    </div>
-    <div class="option">
-      <p class="option-label">B</p>
-      <div class="option-value">
-        <p>Paris</p>
-      </div>
-    </div>
-    <div class="option">
-      <p class="option-label">C</p>
-      <div class="option-value">
-        <p>Paris</p>
-      </div>
-    </div>
-    <div class="option">
-      <p class="option-label">D</p>
-      <div class="option-value">
-        <p>Paris</p>
+        <p>{{ option.text }}</p>
       </div>
     </div>
   </div>
