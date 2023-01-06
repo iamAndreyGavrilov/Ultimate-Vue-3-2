@@ -1,4 +1,8 @@
 <script setup>
+import {useRouter} from "vue-router";
+
+
+const router = useRouter();
 
 const props = defineProps({
   quiz: Object,
@@ -6,11 +10,17 @@ const props = defineProps({
 
 const {quiz} = props
 
+const navigateQuiz = () => {
+  if (quiz) {
+    router.push(`/quiz/${quiz.id}`)
+  }
+}
+
 </script>
 
 
 <template>
-  <div class="card">
+  <div class="card" @click="navigateQuiz">
     <img
         :src="quiz.img"
         alt="">
