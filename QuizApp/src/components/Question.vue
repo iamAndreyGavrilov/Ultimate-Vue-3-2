@@ -53,12 +53,18 @@
   align-items: center;
   margin-top: 20px;
   cursor: pointer;
+  background-color: #cccccc;
 }
 
 .option-label {
   font-size: 30px;
   font-weight: bold;
   margin-right: 20px;
+  background-color: #181818;
+  color: white;
+  width: 50px;
+  height: 50px;
+  text-align: center;
 }
 
 .option-value {
