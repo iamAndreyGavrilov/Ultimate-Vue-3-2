@@ -1,20 +1,22 @@
 <script setup>
-const question = defineProps({
-  question: Object,
-})
+const {question} = defineProps(["question"]);
 
-const {text, options} = question.question
+const emit = defineEmits(['selectOption'])
+
+const emitSelectOption = (option) => {
+  emit('selectOption', option)
+}
 
 </script>
 
 <template>
   <div class="question-container">
     <h2 class="question">
-      {{ text }}
+      {{ question.text }}
     </h2>
   </div>
   <div class="options-container">
-    <div v-for="option in options" :key="option.id" class="option">
+    <div v-for="option in question.options" :key="option.id" class="option" @click="emitSelectOption(option.isCorrect)">
       <p class="option-label">{{ option.label }}</p>
       <div class="option-value">
         <p>{{ option.text }}</p>

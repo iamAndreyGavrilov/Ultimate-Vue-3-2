@@ -3,11 +3,11 @@ import Question from "@/components/Question.vue";
 import QuizHeader from "@/components/QuizHeader.vue";
 import {useRoute} from "vue-router";
 import {ref, watch, computed} from "vue";
-import quizes from "@/data/quizes.json";
+import q from "@/data/quizes.json";
 
 const route = useRoute();
 const quizId = parseInt(route.params.id);
-const quiz = quizes.find((quiz) => quiz.id === quizId);
+const quiz = q.find((q) => q.id === quizId);
 const currentQuestionIndex = ref(0); //"questions" array index, from json file
 
 const questionStatus = computed(() => {
@@ -17,6 +17,12 @@ const barWidth = computed(() => {
   return `${(currentQuestionIndex.value / quiz.questions.length) * 100}%`;
 });
 
+const nextQuestion = () => {
+  if (currentQuestionIndex.value < quiz.questions.length) {
+    currentQuestionIndex.value++;
+  }
+};
+
 </script>
 
 <template>
@@ -25,7 +31,7 @@ const barWidth = computed(() => {
     <div>
       <Question :question="quiz.questions[currentQuestionIndex]"/>
     </div>
-    <button @click="currentQuestionIndex++">Next Question</button>
+    <button @click="nextQuestion">Next Question</button>
   </div>
 </template>
 
