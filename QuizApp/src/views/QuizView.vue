@@ -9,6 +9,7 @@ const route = useRoute();
 const quizId = parseInt(route.params.id);
 const quiz = q.find((q) => q.id === quizId);
 const currentQuestionIndex = ref(0); //"questions" array index, from json file
+const numberOfCorrectAnswers = ref(0);
 
 const questionStatus = computed(() => {
   return `${currentQuestionIndex.value}/${quiz.questions.length}`;
@@ -18,9 +19,16 @@ const barWidth = computed(() => {
 });
 
 const nextQuestion = () => {
-  if (currentQuestionIndex.value < quiz.questions.length) {
-    currentQuestionIndex.value++;
+  // if (currentQuestionIndex.value < quiz.questions.length) {
+  currentQuestionIndex.value++;
+  // }
+};
+
+const onOptionSelected = (isCorrect) => {
+  if (isCorrect) {
+    numberOfCorrectAnswers.value++;
   }
+  nextQuestion();
 };
 
 </script>
@@ -29,7 +37,7 @@ const nextQuestion = () => {
   <div>
     <QuizHeader :questionStatus="questionStatus" :barWidth="barWidth"/>
     <div>
-      <Question :question="quiz.questions[currentQuestionIndex]"/>
+      <Question :question="quiz.questions[currentQuestionIndex]" @selectOption="onOptionSelected"/>
     </div>
     <button @click="nextQuestion">Next Question</button>
   </div>

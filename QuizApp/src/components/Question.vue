@@ -3,8 +3,8 @@ const {question} = defineProps(["question"]);
 
 const emit = defineEmits(['selectOption'])
 
-const emitSelectOption = (option) => {
-  emit('selectOption', option)
+const emitSelectOption = (isCorrect) => {
+  emit('selectOption', isCorrect)
 }
 
 </script>
