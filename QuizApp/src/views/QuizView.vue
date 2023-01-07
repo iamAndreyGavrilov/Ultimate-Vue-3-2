@@ -13,13 +13,15 @@ const currentQuestionIndex = ref(0); //"questions" array index, from json file
 const questionStatus = computed(() => {
   return `${currentQuestionIndex.value}/${quiz.questions.length}`;
 });
-
+const barWidth = computed(() => {
+  return `${(currentQuestionIndex.value / quiz.questions.length) * 100}%`;
+});
 
 </script>
 
 <template>
   <div>
-    <QuizHeader :questionStatus="questionStatus"/>
+    <QuizHeader :questionStatus="questionStatus" :barWidth="barWidth"/>
     <div>
       <Question :question="quiz.questions[currentQuestionIndex]"/>
     </div>

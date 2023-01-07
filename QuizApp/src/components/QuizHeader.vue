@@ -2,6 +2,7 @@
 
 const props = defineProps({
   questionStatus: String,
+  barWidth: String,
 })
 
 </script>
@@ -10,7 +11,7 @@ const props = defineProps({
   <header>
     <h4>Question {{ questionStatus }}</h4>
     <div class="bar">
-      <div class="completion"></div>
+      <div class="completion" :style="{width:barWidth}"></div>
     </div>
   </header>
 </template>
